@@ -1,8 +1,10 @@
 const router = require('express').Router()
+const { Item } = require('../models')
 
-router.get('/', (req, res) => {
-  res.render('index')
-})
+router.get('/', (req, res) => Item.findAll()
+  .then(items => items.map(({ dataValues }) => dataValues))
+  .then(items => res.render('index', { items }))
+  .catch(err => console.log(err)))
 
 // router.get('/', (req, res) => {
 //   res.render('index', { name: 'John Doe' })

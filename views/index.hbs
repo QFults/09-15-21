@@ -6,4 +6,19 @@
   <button id="addItem">add item</button>
 </form>
 <hr>
-<div id="items"></div>
+<div id="items">
+  {{#each items}}
+  <div>
+    <p>{{this.text}}</p>
+    <button class="isDone" data-id="{{this.id}}">
+      {{#if this.isDone}}
+        Done
+        {{else}}
+        Not Done
+      {{/if}}
+    </button>
+    <button class="delete" data-id="{{this.id}}">X</button>
+    <hr>
+  </div>
+  {{/each}}
+</div>

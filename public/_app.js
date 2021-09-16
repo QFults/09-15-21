@@ -48,3 +48,18 @@ document.addEventListener('click', event => {
       .catch(err => console.error(err))
   }
 })
+
+axios.get('/api/items')
+  .then(({ data: items }) => {
+    items.forEach(item => {
+      const itemElem = document.createElement('div')
+      itemElem.innerHTML = `
+        <p>${item.text}</p>
+        <button class="isDone" data-id="${item.id}">${item.isDone ? 'Done' : 'Not Done'}</button>
+        <button class="delete" data-id="${item.id}">X</button>
+        <hr>
+      `
+      document.getElementById('items').append(itemElem)
+    })
+  })
+  .catch(err => console.error(err))
